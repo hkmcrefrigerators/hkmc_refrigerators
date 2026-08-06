@@ -1,0 +1,680 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { BRAND_NAME, CITY, CONTACT_EMAIL, PHONE_DISPLAY, PHONE_HREF, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { serviceCategories } from '../data/services';
+
+const heroImages = [
+	{
+		src: 'https://images.unsplash.com/photo-1642749776312-aa42ce20c9f5?auto=format&fit=crop&w=900&h=900&q=70',
+		alt: 'HKMC technicians servicing outdoor AC units on a rooftop',
+	},
+	{
+		src: 'https://images.unsplash.com/photo-1721613877687-c9099b698faa?auto=format&fit=crop&w=600&h=430&q=70',
+		alt: 'Technician repairing a home refrigerator',
+	},
+	{
+		src: 'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=600&h=430&q=70',
+		alt: 'Technician servicing a front-load washing machine',
+	},
+	{
+		src: 'https://images.unsplash.com/photo-1599083549933-838ea352c1cc?auto=format&fit=crop&w=600&h=430&q=70',
+		alt: 'Modern kitchen microwave and appliances',
+	},
+];
+
+const usps = [
+	{
+		title: 'Verified technicians',
+		description: 'Background-checked, trained and ID-badged before they visit.',
+		icon: 'badge',
+	},
+	{
+		title: 'Genuine spare parts',
+		description: 'Manufacturer-approved parts with their own part warranty.',
+		icon: 'cube',
+	},
+	{
+		title: '30-day service warranty',
+		description: 'Free follow-up visit if the same issue comes back.',
+		icon: 'shield',
+	},
+	{
+		title: 'Same-day service',
+		description: `Most ${CITY} bookings get a technician the same day.`,
+		icon: 'clock',
+	},
+];
+
+const steps = [
+	{
+		title: 'Book online or call',
+		description: 'Tell us the appliance, the issue and your area — takes under a minute.',
+	},
+	{
+		title: 'Technician visits & diagnoses',
+		description: 'A verified technician arrives, inspects the appliance and shares an upfront quote.',
+	},
+	{
+		title: 'Repair, tested, warrantied',
+		description: 'We fix it on the spot where possible and back it with a 30-day warranty.',
+	},
+];
+
+const stats = [
+	{ value: '10,000+', label: 'Repairs completed' },
+	{ value: '190+', label: `Areas covered in ${CITY}` },
+	{ value: '<60 min', label: 'Avg. response time' },
+	{ value: '30-Day', label: 'Service warranty' },
+];
+
+const testimonials = [
+	{
+		name: 'Ananya R.',
+		area: 'Koramangala',
+		avatar: 'https://i.pravatar.cc/100?img=47',
+		quote:
+			'AC stopped cooling on the hottest day of the month. Technician was at my door in under an hour and had it running again same evening.',
+		service: 'AC Repair',
+	},
+	{
+		name: 'Vikram S.',
+		area: 'Whitefield',
+		avatar: 'https://i.pravatar.cc/100?img=12',
+		quote:
+			'Our restaurant’s visi cooler failed right before service hours. HKMC sent a technician who sorted it fast and set us up on an AMC.',
+		service: 'Commercial Refrigeration',
+	},
+	{
+		name: 'Priya M.',
+		area: 'Jayanagar',
+		avatar: 'https://i.pravatar.cc/100?img=32',
+		quote:
+			'Upfront pricing, genuine parts, and the washing machine has run perfectly since. Would book again without a second thought.',
+		service: 'Washing Machine Repair',
+	},
+];
+
+const neighborhoods = [
+	'Koramangala',
+	'Indiranagar',
+	'HSR Layout',
+	'Whitefield',
+	'Jayanagar',
+	'Marathahalli',
+	'JP Nagar',
+	'Electronic City',
+	'BTM Layout',
+	'Malleswaram',
+	'Yelahanka',
+	'Bellandur',
+	'Hebbal',
+	'Banashankari',
+	'Sarjapur Road',
+	'RT Nagar',
+];
+
+const faqs = [
+	{
+		q: `Which appliances do you repair in ${CITY}?`,
+		a: 'We repair air conditioners, refrigerators, washing machines, microwaves, dishwashers, and commercial refrigeration & HVAC equipment for homes and businesses.',
+	},
+	{
+		q: 'How fast can a technician reach me?',
+		a: `Most bookings in ${CITY} get a technician visit the same day, often within 60–90 minutes for urgent requests.`,
+	},
+	{
+		q: 'Do you offer a warranty on repairs?',
+		a: 'Yes — every repair carries a 30-day service warranty on the same issue, and genuine parts carry the manufacturer’s part warranty.',
+	},
+	{
+		q: 'Do you repair all brands?',
+		a: 'Yes. Our technicians service all major brands, including LG, Samsung, Whirlpool, Voltas, Godrej, IFB, Bosch and Daikin.',
+	},
+	{
+		q: 'What does a visit cost?',
+		a: 'Visit charges start from ₹299 for home appliances and ₹499 for commercial equipment, adjusted against the final repair cost. You will see the full estimate before any work begins.',
+	},
+	{
+		q: 'Do you work with restaurants, offices and other businesses?',
+		a: 'Yes — we service restaurants, cloud kitchens, cafes, supermarkets, hospitals, hotels and offices, including AMC (annual maintenance contract) plans.',
+	},
+];
+
+const heroOgImage = heroImages[0].src;
+
+const localBusinessSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'LocalBusiness',
+	name: BRAND_NAME,
+	image: heroOgImage,
+	telephone: PHONE_HREF.replace('tel:', ''),
+	email: CONTACT_EMAIL,
+	priceRange: '₹₹',
+	url: Astro.site?.toString(),
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: CITY,
+		addressRegion: 'Karnataka',
+		addressCountry: 'IN',
+	},
+	areaServed: {
+		'@type': 'City',
+		name: CITY,
+	},
+	openingHoursSpecification: {
+		'@type': 'OpeningHoursSpecification',
+		dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+		opens: '08:00',
+		closes: '21:00',
+	},
+};
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: faqs.map((faq) => ({
+		'@type': 'Question',
+		name: faq.q,
+		acceptedAnswer: {
+			'@type': 'Answer',
+			text: faq.a,
+		},
+	})),
+};
+---
+
+<!doctype html>
+<html lang="en-IN">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={heroOgImage} />
+		<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+		<style>
+			main {
+				width: 100%;
+				max-width: 100%;
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body class="bg-white text-zinc-900">
+		<Header />
+		<main>
+			<!-- Hero -->
+			<section class="mx-auto max-w-7xl px-4 pt-10 pb-14 sm:px-6 lg:px-8 lg:pt-16 lg:pb-20">
+				<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+					<div>
+						<p class="text-sm font-semibold tracking-wide text-zinc-500 uppercase">Now serving {CITY}</p>
+						<h1 class="mt-3 text-4xl leading-[1.1] font-extrabold tracking-tight text-zinc-950 sm:text-5xl lg:text-[3.25rem]">
+							AC, fridge &amp; appliance repair — at your doorstep in {CITY}
+						</h1>
+						<p class="mt-5 max-w-xl text-lg leading-7 text-zinc-600">
+							Verified technicians for air conditioners, refrigerators, washing machines, microwaves,
+							dishwashers and commercial refrigeration. Transparent pricing, genuine parts, 30-day
+							warranty.
+						</p>
+						<div class="mt-8 flex flex-wrap items-center gap-4">
+							<a
+								href="#book"
+								class="rounded-full bg-zinc-900 px-7 py-3.5 text-base font-semibold text-white! transition-colors hover:bg-zinc-700"
+							>
+								Book a Repair 
+							</a>
+							<a
+								href={PHONE_HREF}
+								class="flex items-center gap-2 rounded-full border border-zinc-300 px-7 py-3.5 text-base font-semibold text-zinc-900 transition-colors hover:border-zinc-900"
+							>
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+									<path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.25 1.02z"></path>
+								</svg>
+								Call {PHONE_DISPLAY}
+							</a>
+						</div>
+						<dl class="mt-10 flex flex-wrap gap-x-10 gap-y-4">
+							{
+								stats.slice(0, 3).map((stat) => (
+									<div>
+										<dt class="text-2xl font-extrabold text-zinc-950">{stat.value}</dt>
+										<dd class="text-sm text-zinc-500">{stat.label}</dd>
+									</div>
+								))
+							}
+						</dl>
+					</div>
+
+					<div class="grid grid-cols-3 gap-3 sm:gap-4">
+						<img
+							src={heroImages[0].src}
+							alt={heroImages[0].alt}
+							width="900"
+							height="900"
+							loading="eager"
+							fetchpriority="high"
+							decoding="async"
+							class="col-span-3 aspect-square w-full rounded-2xl object-cover sm:aspect-4/3"
+						/>
+						{
+							heroImages.slice(1).map((img) => (
+								<img
+									src={img.src}
+									alt={img.alt}
+									width="450"
+									height="350"
+									loading="lazy"
+									decoding="async"
+									class="aspect-4/3 w-full rounded-2xl object-cover"
+								/>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Trust strip -->
+			<section class="border-y border-zinc-200 bg-zinc-50">
+				<div class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 sm:px-6 lg:grid-cols-4 lg:px-8">
+					{
+						usps.map((usp) => (
+							<div class="flex items-start gap-3">
+								<span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-zinc-200">
+									{usp.icon === 'badge' && (
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5 text-zinc-900">
+											<path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9.75c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.043-.133-2.056-.382-3.016Z" />
+										</svg>
+									)}
+									{usp.icon === 'cube' && (
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5 text-zinc-900">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5 12 3 3 7.5m18 0-9 4.5m9-4.5v9L12 21m0-9L3 7.5m9 4.5v9m-9-9v9l9 4.5" />
+										</svg>
+									)}
+									{usp.icon === 'shield' && (
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5 text-zinc-900">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 3.25 5 5.75v5.5c0 4.5 3 7.75 7 9.5 4-1.75 7-5 7-9.5v-5.5L12 3.25Z" />
+										</svg>
+									)}
+									{usp.icon === 'clock' && (
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5 text-zinc-900">
+											<circle cx="12" cy="12" r="8.25" />
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4.5l3 1.75" />
+										</svg>
+									)}
+								</span>
+								<div>
+									<p class="text-sm font-semibold text-zinc-900">{usp.title}</p>
+									<p class="text-sm text-zinc-500">{usp.description}</p>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- Services -->
+			<section id="services" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+				<div class="max-w-2xl">
+					<h2 class="text-3xl font-extrabold tracking-tight text-zinc-950 sm:text-4xl">Book a repair by appliance</h2>
+					<p class="mt-3 text-lg text-zinc-600">
+						Pick the appliance that needs attention. Every visit includes diagnosis, an upfront quote and a
+						30-day warranty on the repair.
+					</p>
+				</div>
+				<div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+					{
+						serviceCategories.map((service) => (
+							<a
+								href="#book"
+								class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-200 transition-shadow hover:shadow-lg"
+							>
+								<img
+									src={service.image}
+									alt={service.name}
+									width="800"
+									height="600"
+									loading="lazy"
+									decoding="async"
+									class="aspect-4/3 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+								/>
+								<div class="flex flex-1 flex-col p-5">
+									<h3 class="text-lg font-bold text-zinc-950">{service.name}</h3>
+									<p class="mt-1.5 flex-1 text-sm leading-6 text-zinc-600">{service.description}</p>
+									<div class="mt-4 flex items-center justify-between">
+										<span class="text-sm font-semibold text-zinc-900">{service.visitFee}</span>
+										<span class="text-sm font-semibold text-zinc-900 group-hover:underline">Book now →</span>
+									</div>
+								</div>
+							</a>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- How it works -->
+			<section class="bg-zinc-950 py-16 text-white lg:py-24">
+				<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+					<h2 class="text-3xl font-extrabold text-white! tracking-tight sm:text-4xl">How it works</h2>
+					<div class="mt-12 grid gap-10 sm:grid-cols-3 sm:gap-8">
+						{
+							steps.map((step, index) => (
+								<div>
+									<span class="flex size-11 items-center justify-center rounded-full bg-white text-lg font-bold text-zinc-950">
+										{index + 1}
+									</span>
+									<h3 class="mt-5 text-zinc-50! text-xl font-bold">{step.title}</h3>
+									<p class="mt-2 text-zinc-400">{step.description}</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Common problems -->
+			<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+				<div class="max-w-2xl">
+					<h2 class="text-3xl font-extrabold tracking-tight text-zinc-950 sm:text-4xl">Common problems we fix</h2>
+					<p class="mt-3 text-lg text-zinc-600">
+						Not sure what's wrong? These are the issues our technicians see — and fix — most often.
+					</p>
+				</div>
+				<div class="mt-10 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+					{
+						serviceCategories.map((service) => (
+							<div>
+								<h3 class="text-base font-bold text-zinc-950">{service.name}</h3>
+								<ul class="mt-3 flex flex-wrap gap-2">
+									{service.problems.map((problem) => (
+										<li>
+											<a
+												href="#book"
+												class="inline-block rounded-full border border-zinc-200 px-3 py-1.5 text-sm text-zinc-700 transition-colors hover:border-zinc-900 hover:text-zinc-950"
+											>
+												{problem}
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- Commercial banner -->
+			<section id="commercial" class="scroll-mt-20 px-4 sm:px-6 lg:px-8">
+				<div class="relative mx-auto max-w-7xl overflow-hidden rounded-3xl">
+					<img
+						src="https://images.unsplash.com/photo-1762924352150-12b8c19bf4d6?auto=format&fit=crop&w=1600&h=800&q=65"
+						alt="Commercial kitchen refrigeration equipment"
+						width="1600"
+						height="800"
+						loading="lazy"
+						decoding="async"
+						class="h-[420px] w-full object-cover sm:h-[380px]"
+					/>
+					<div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-transparent"></div>
+					<div class="absolute inset-0 flex items-center">
+						<div class="max-w-lg px-6 py-10 sm:px-12">
+							<span class="inline-block rounded-full bg-white px-3 py-1 text-xs font-bold tracking-wide text-zinc-950 uppercase">
+								For businesses
+							</span>
+							<h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white! sm:text-4xl">
+								Commercial refrigeration &amp; HVAC, handled
+							</h2>
+							<p class="mt-3 text-white/85">
+								Deep freezers, visi coolers, cold rooms and ductable AC for restaurants, cloud
+								kitchens, cafes, hospitals and offices — with AMC plans for zero-downtime operations.
+							</p>
+							<a
+								href="#book"
+								class="mt-6 inline-block rounded-full bg-white px-6 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:bg-zinc-200"
+							>
+								Get a business quote
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Stats -->
+			<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+				<dl class="grid grid-cols-2 gap-8 border-y border-zinc-200 py-10 sm:grid-cols-4">
+					{
+						stats.map((stat) => (
+							<div class="text-center">
+								<dt class="text-3xl font-extrabold text-zinc-950 sm:text-4xl">{stat.value}</dt>
+								<dd class="mt-1 text-sm text-zinc-500">{stat.label}</dd>
+							</div>
+						))
+					}
+				</dl>
+			</section>
+
+			<!-- Testimonials -->
+			<section class="bg-zinc-50 py-16 lg:py-24">
+				<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+					<h2 class="text-3xl font-extrabold tracking-tight text-zinc-950 sm:text-4xl">What {CITY} customers say</h2>
+					<div class="mt-10 grid gap-6 sm:grid-cols-3">
+						{
+							testimonials.map((testimonial) => (
+								<figure class="flex flex-col rounded-2xl bg-white p-6 ring-1 ring-zinc-200">
+									<div class="flex text-amber-500" aria-hidden="true">
+										{Array.from({ length: 5 }).map(() => (
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4">
+												<path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1 1 5.79L10 14.9l-5.21 2.6 1-5.79-4.21-4.1 5.82-.85L10 1.5z" />
+											</svg>
+										))}
+									</div>
+									<blockquote class="mt-4! flex-1 text-base!  leading-6 text-zinc-700">“{testimonial.quote}”</blockquote>
+									<figcaption class="mt-5 flex items-center gap-3">
+										<img
+											src={testimonial.avatar}
+											alt=""
+											width="40"
+											height="40"
+											loading="lazy"
+											decoding="async"
+											class="size-10 rounded-full object-cover"
+										/>
+										<div>
+											<p class="text-sm font-semibold text-zinc-950">{testimonial.name}</p>
+											<p class="text-xs text-zinc-500">{testimonial.area} &middot; {testimonial.service}</p>
+										</div>
+									</figcaption>
+								</figure>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Service area -->
+			<section id="areas" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+				<h2 class="text-3xl font-extrabold tracking-tight text-zinc-950 sm:text-4xl">Areas we serve in {CITY}</h2>
+				<p class="mt-3 max-w-2xl text-lg text-zinc-600">
+					HKMC Refrigerators currently covers all of {CITY}, with technicians based across these
+					neighborhoods for faster response times.
+				</p>
+				<ul class="mt-8 flex flex-wrap gap-2.5">
+					{
+						neighborhoods.map((area) => (
+							<li class="rounded-full bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-700">{area}</li>
+						))
+					}
+				</ul>
+			</section>
+
+			<!-- FAQ -->
+			<section id="faq" class="bg-zinc-50 py-16 lg:py-24">
+				<div class="mx-auto max-w-3xl scroll-mt-20 px-4 sm:px-6 lg:px-8">
+					<h2 class="text-3xl font-extrabold tracking-tight text-zinc-950 sm:text-4xl">Frequently asked questions</h2>
+					<div class="mt-8 divide-y divide-zinc-200 rounded-2xl bg-white ring-1 ring-zinc-200">
+						{
+							faqs.map((faq) => (
+								<details class="group p-5 open:bg-zinc-50/60 first:rounded-t-2xl last:rounded-b-2xl">
+									<summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-zinc-950">
+										{faq.q}
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											class="size-5 shrink-0 text-zinc-500 transition-transform group-open:rotate-45"
+										>
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+										</svg>
+									</summary>
+									<p class="mt-3 text-sm leading-6 text-zinc-600">{faq.a}</p>
+								</details>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Booking form -->
+			<section id="book" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+				<div class="grid gap-12 lg:grid-cols-5">
+					<div class="lg:col-span-2">
+						<h2 class="text-3xl font-extrabold tracking-tight text-zinc-950 sm:text-4xl">Request a repair</h2>
+						<p class="mt-3 text-lg text-zinc-600">
+							Share a few details and we'll call you back to confirm a slot — usually within minutes.
+						</p>
+						<ul class="mt-8 space-y-4 text-sm text-zinc-700">
+							<li class="flex items-center gap-3">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 shrink-0 text-zinc-900">
+									<path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.25 1.02z"></path>
+								</svg>
+								Prefer to talk? Call <a href={PHONE_HREF} class="font-semibold text-zinc-950 hover:underline">{PHONE_DISPLAY}</a>
+							</li>
+							<li class="flex items-center gap-3">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-4 shrink-0 text-zinc-900">
+									<circle cx="12" cy="12" r="8.25" />
+									<path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4.5l3 1.75" />
+								</svg>
+								Open daily, 8:00 AM – 9:00 PM
+							</li>
+							<li class="flex items-center gap-3">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-4 shrink-0 text-zinc-900">
+									<path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9.75c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.043-.133-2.056-.382-3.016Z" />
+								</svg>
+								No obligation — see the quote before we start
+							</li>
+						</ul>
+					</div>
+
+					<div class="lg:col-span-3">
+						<form id="book-form" class="rounded-2xl border border-zinc-200 p-6 sm:p-8">
+							<div class="grid gap-5 sm:grid-cols-2">
+								<div class="sm:col-span-1">
+									<label for="name" class="text-sm font-medium text-zinc-800">Full name</label>
+									<input
+										type="text"
+										id="name"
+										name="name"
+										required
+										class="mt-1.5 block w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+										placeholder="e.g. Rahul Kumar"
+									/>
+								</div>
+								<div class="sm:col-span-1">
+									<label for="phone" class="text-sm font-medium text-zinc-800">Phone number</label>
+									<input
+										type="tel"
+										id="phone"
+										name="phone"
+										required
+										class="mt-1.5 block w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+										placeholder="10-digit mobile number"
+									/>
+								</div>
+								<div class="sm:col-span-1">
+									<label for="appliance" class="text-sm font-medium text-zinc-800">Appliance</label>
+									<select
+										id="appliance"
+										name="appliance"
+										required
+										class="mt-1.5 block w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-2.5 text-sm text-zinc-900 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+									>
+										<option value="">Select an appliance</option>
+										{serviceCategories.map((service) => <option value={service.slug}>{service.name}</option>)}
+									</select>
+								</div>
+								<div class="sm:col-span-1">
+									<label for="area" class="text-sm font-medium text-zinc-800">Area / locality</label>
+									<input
+										type="text"
+										id="area"
+										name="area"
+										required
+										class="mt-1.5 block w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+										placeholder={`e.g. Koramangala, ${CITY}`}
+									/>
+								</div>
+								<div class="sm:col-span-2">
+									<label for="issue" class="text-sm font-medium text-zinc-800">What's wrong? (optional)</label>
+									<textarea
+										id="issue"
+										name="issue"
+										rows="3"
+										class="mt-1.5 block w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+										placeholder="e.g. AC not cooling, water leaking near the indoor unit"
+									></textarea>
+								</div>
+							</div>
+							<button
+								type="submit"
+								class="mt-6 w-full rounded-full bg-zinc-900 px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-zinc-700 sm:w-auto"
+							>
+								Request a callback
+							</button>
+							<p class="mt-3 text-xs text-zinc-500">
+								By submitting, you agree to be contacted by {BRAND_NAME} about your service request.
+							</p>
+						</form>
+						<div id="book-success" class="hidden rounded-2xl border border-zinc-200 p-8 text-center">
+							<h3 class="text-xl font-bold text-zinc-950">Request received</h3>
+							<p class="mt-2 text-sm text-zinc-600">
+								Thanks — we'll call you shortly to confirm your slot. For anything urgent, call us directly at
+								<a href={PHONE_HREF} class="font-semibold text-zinc-950 hover:underline"> {PHONE_DISPLAY}</a>.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Final CTA -->
+			<section class="bg-zinc-950">
+				<div class="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
+					<h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Appliance acting up? We can be there today.</h2>
+					<p class="mx-auto mt-3 max-w-xl text-zinc-400">
+						Verified technicians, genuine parts, transparent pricing — across {CITY}.
+					</p>
+					<div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+						<a href="#book" class="rounded-full bg-white px-7 py-3.5 text-base font-semibold text-zinc-950 transition-colors hover:bg-zinc-200">
+							Book a Repair
+						</a>
+						<a href={PHONE_HREF} class="rounded-full border border-white/30 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:border-white">
+							Call {PHONE_DISPLAY}
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			const form = document.getElementById('book-form');
+			const success = document.getElementById('book-success');
+
+			form?.addEventListener('submit', (event) => {
+				event.preventDefault();
+				form.classList.add('hidden');
+				success?.classList.remove('hidden');
+			});
+		</script>
+	</body>
+</html>
