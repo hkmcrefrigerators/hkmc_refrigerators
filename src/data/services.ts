@@ -6,6 +6,7 @@ export interface ServiceCategory {
 	name: string;
 	shortName: string;
 	description: string;
+	/** Root-relative URL, e.g. "/ac.png" for a file at public/ac.png — no "/public" prefix; Astro serves public/ contents from the site root. */
 	image: string;
 	visitFee: string;
 	problems: string[];
@@ -17,7 +18,7 @@ export const serviceCategories: ServiceCategory[] = [
 		name: 'AC Repair & Service',
 		shortName: 'AC',
 		description: 'Split, window & inverter AC — installation, gas refill, general service and repair.',
-		image: '/public/ac.png',
+		image: '/ac.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'AC not cooling',
@@ -34,7 +35,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Fridge',
 		description: 'Single, double & side-by-side door fridges — cooling issues, gas charging, compressor repair.',
 		image:
-			'/public/fridge.png',
+			'/fridge.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Fridge not cooling',
@@ -51,7 +52,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Washing Machine',
 		description: 'Front load, top load & semi-automatic — spin, drainage, motor and PCB issues.',
 		image:
-			'/public/washing-machine.png',
+			'/washing-machine.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not spinning',
@@ -68,7 +69,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Microwave',
 		description: 'Solo, grill & convection microwaves — heating faults, sparking, display and door issues.',
 		image:
-			'/public/oven.png',
+			'/oven.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not heating',
@@ -85,7 +86,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Dishwasher',
 		description: 'Free-standing, built-in & countertop dishwashers — installation, descaling, repair.',
 		image:
-			'/public/dishwasher.png',
+			'/dishwasher.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not draining',
@@ -103,7 +104,7 @@ export const serviceCategories: ServiceCategory[] = [
 		description:
 			'Deep freezers, visi coolers, cold rooms, ductable & VRF AC — for restaurants, cafes, hospitals & offices.',
 		image:
-			'/public/hv-ac.png',
+			'/hv-ac.png',
 		visitFee: 'Visit from ₹499',
 		problems: [
 			'Deep freezer not cooling',
