@@ -1,4 +1,4 @@
-# Astro Starter Kit: Blog
+# new code Astro Starter Kit: Blog
 
 ```sh
 bun create astro@latest -- --template blog
