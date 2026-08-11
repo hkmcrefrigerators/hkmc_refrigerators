@@ -1,6 +1,7 @@
 ---
 title: 'AC Maintenance Checklist for Bangalore Homes: Summer and Monsoon'
 description: "Bangalore's mix of hot summers and heavy monsoon rain is tough on AC units. Here's a simple maintenance checklist to keep yours running efficiently through both seasons."
+author: 'HKMC Technical Team'
 pubDate: 'Aug 05 2026'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 ---
@@ -32,6 +33,6 @@ Bangalore's climate is unusual for AC maintenance — hot, dusty summers followe
 - The outdoor unit is unusually loud or vibrating
 - Electricity bills have crept up without a change in usage
 
-Routine upkeep catches most problems before they become expensive ones — but when something's already wrong, a proper diagnosis beats guesswork.
+Routine upkeep catches most problems before they become expensive ones — but when something's already wrong, a proper diagnosis beats guesswork. If cooling has already dropped off, start with [AC not cooling: 7 common causes](/blog/ac-not-cooling-common-causes) or [how often an AC actually needs a gas refill](/blog/ac-gas-refill-how-often).
 
 **Ready for a service?** [Book an AC general service](/#book) in Bangalore, or explore our full [AC repair services](/#services).

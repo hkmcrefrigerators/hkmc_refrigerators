@@ -1,6 +1,7 @@
 ---
 title: 'AC Not Cooling? 7 Common Causes (And When to Call a Technician)'
 description: 'Split and window AC blowing warm air in Bangalore? Here are the 7 most common reasons an AC stops cooling, quick checks you can do yourself, and when to call a technician.'
+author: 'HKMC Technical Team'
 pubDate: 'Jul 05 2026'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 ---
@@ -13,7 +14,7 @@ A blocked filter restricts airflow over the cooling coil, so the unit runs but b
 
 ## 2. Low refrigerant (gas leak)
 
-If your AC blows air that's only slightly cool, or you notice ice forming on the indoor unit, it likely has a refrigerant leak. Refrigerant doesn't get "used up" in normal operation — a low level almost always means a leak that needs to be found and sealed, not just topped up.
+If your AC blows air that's only slightly cool, or you notice ice forming on the indoor unit, it likely has a refrigerant leak. Refrigerant doesn't get "used up" in normal operation — a low level almost always means a leak that needs to be found and sealed, not just topped up. See [how often an AC actually needs a gas refill](/blog/ac-gas-refill-how-often) for more on this.
 
 ## 3. Dirty outdoor unit (condenser)
 

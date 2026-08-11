@@ -1,0 +1,95 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { BRAND_NAME, CITY, CONTACT_EMAIL, PHONE_DISPLAY } from '../consts';
+
+const title = `Privacy Policy | ${BRAND_NAME}`;
+const description = `How ${BRAND_NAME} collects, uses and protects the personal information you share when booking an appliance repair in ${CITY}.`;
+
+const lastUpdated = 'August 2026';
+---
+
+<!doctype html>
+<html lang="en-IN">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			main {
+				width: 100%;
+				max-width: 100%;
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body class="bg-white text-zinc-900">
+		<Header />
+		<main>
+			<div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+				<h1 class="text-3xl font-extrabold tracking-tight text-zinc-950 sm:text-4xl">Privacy Policy</h1>
+				<p class="mt-2 text-sm text-zinc-500">Last updated: {lastUpdated}</p>
+
+				<div class="prose mt-8 space-y-6 text-sm leading-6 text-zinc-700">
+					<p>
+						{BRAND_NAME} ("we", "us", "our") provides AC, refrigerator, washing machine and other
+						appliance repair services in {CITY}. This policy explains what personal information we
+						collect through this website, why we collect it, and how it's used.
+					</p>
+
+					<h2 class="text-lg font-bold text-zinc-950">Information we collect</h2>
+					<p>When you use our booking form or contact us by phone or email, we may collect:</p>
+					<ul class="list-disc space-y-1 pl-5">
+						<li>Your name and phone number</li>
+						<li>Your service area / locality</li>
+						<li>Details about the appliance and issue you describe to us</li>
+						<li>Any information you choose to share when calling or messaging us directly</li>
+					</ul>
+
+					<h2 class="text-lg font-bold text-zinc-950">How we use this information</h2>
+					<p>We use the information you provide solely to:</p>
+					<ul class="list-disc space-y-1 pl-5">
+						<li>Contact you to confirm and schedule a repair visit</li>
+						<li>Assign a technician suited to your appliance and location</li>
+						<li>Follow up on the service provided, including warranty support</li>
+					</ul>
+					<p>We do not sell your personal information to third parties.</p>
+
+					<h2 class="text-lg font-bold text-zinc-950">How we store and protect it</h2>
+					<p>
+						Booking details are used to coordinate your service visit and are retained only as long as
+						reasonably needed for that purpose and for warranty-related follow-up.
+					</p>
+
+					<h2 class="text-lg font-bold text-zinc-950">Your rights</h2>
+					<p>
+						You can ask us what information we hold about you, request a correction, or ask us to
+						delete it, subject to any information we're required to keep for legitimate business or
+						legal reasons. Contact us using the details below to make a request.
+					</p>
+
+					<h2 class="text-lg font-bold text-zinc-950">Cookies and analytics</h2>
+					<p>
+						This website does not currently use tracking cookies or third-party analytics. If that
+						changes, this policy will be updated to reflect it.
+					</p>
+
+					<h2 class="text-lg font-bold text-zinc-950">Contact us</h2>
+					<p>
+						For any privacy-related question or request, reach us at
+						<a href={`mailto:${CONTACT_EMAIL}`} class="font-semibold text-zinc-950 hover:underline">
+							{' '}{CONTACT_EMAIL}
+						</a> or call {PHONE_DISPLAY}.
+					</p>
+
+					<p class="border-t border-zinc-200 pt-6 text-xs text-zinc-400">
+						This is a general privacy notice and has not been reviewed by a lawyer. Before relying on
+						it for a live site collecting customer data, have it reviewed against applicable law
+						(including India's Digital Personal Data Protection Act, 2023).
+					</p>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

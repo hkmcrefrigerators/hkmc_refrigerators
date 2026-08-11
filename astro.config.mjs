@@ -4,36 +4,22 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
-import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.hkmcrefrigerators.com',
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [mdx(), sitemap()],
 
   fonts: [
       {
-          provider: fontProviders.local(),
-          name: 'Atkinson',
-          cssVariable: '--font-atkinson',
+          provider: fontProviders.google(),
+          name: 'Inter Tight',
+          cssVariable: '--font-inter-tight',
           fallbacks: ['sans-serif'],
-          options: {
-              variants: [
-                  {
-                      src: ['./src/assets/fonts/atkinson-regular.woff'],
-                      weight: 400,
-                      style: 'normal',
-                      display: 'swap',
-                  },
-                  {
-                      src: ['./src/assets/fonts/atkinson-bold.woff'],
-                      weight: 700,
-                      style: 'normal',
-                      display: 'swap',
-                  },
-              ],
-          },
+          weights: [400, 500, 600, 700, 800],
+          styles: ['normal'],
+          subsets: ['latin'],
       },
 	],
 

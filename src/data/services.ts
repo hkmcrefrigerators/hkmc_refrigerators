@@ -17,8 +17,7 @@ export const serviceCategories: ServiceCategory[] = [
 		name: 'AC Repair & Service',
 		shortName: 'AC',
 		description: 'Split, window & inverter AC — installation, gas refill, general service and repair.',
-		image:
-			'https://images.unsplash.com/photo-1630481721654-010b644f923d?auto=format&fit=crop&w=800&h=600&q=70',
+		image: '/public/ac.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'AC not cooling',
@@ -35,7 +34,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Fridge',
 		description: 'Single, double & side-by-side door fridges — cooling issues, gas charging, compressor repair.',
 		image:
-			'https://images.unsplash.com/photo-1536353284924-9220c464e262?auto=format&fit=crop&w=800&h=600&q=70',
+			'/public/fridge.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Fridge not cooling',
@@ -52,7 +51,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Washing Machine',
 		description: 'Front load, top load & semi-automatic — spin, drainage, motor and PCB issues.',
 		image:
-			'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=800&h=600&q=70',
+			'/public/washing-machine.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not spinning',
@@ -69,7 +68,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Microwave',
 		description: 'Solo, grill & convection microwaves — heating faults, sparking, display and door issues.',
 		image:
-			'https://images.unsplash.com/photo-1608384156808-418b5c079968?auto=format&fit=crop&w=800&h=600&q=70',
+			'/public/oven.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not heating',
@@ -86,7 +85,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Dishwasher',
 		description: 'Free-standing, built-in & countertop dishwashers — installation, descaling, repair.',
 		image:
-			'https://images.unsplash.com/photo-1620568400263-6f1cf95b9e30?auto=format&fit=crop&w=800&h=600&q=70',
+			'/public/dishwasher.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not draining',
@@ -104,7 +103,7 @@ export const serviceCategories: ServiceCategory[] = [
 		description:
 			'Deep freezers, visi coolers, cold rooms, ductable & VRF AC — for restaurants, cafes, hospitals & offices.',
 		image:
-			'https://images.unsplash.com/photo-1780434093336-454c91c84076?auto=format&fit=crop&w=800&h=600&q=70',
+			'/public/hv-ac.png',
 		visitFee: 'Visit from ₹499',
 		problems: [
 			'Deep freezer not cooling',
