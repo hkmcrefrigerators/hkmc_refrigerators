@@ -115,4 +115,38 @@ export const serviceCategories: ServiceCategory[] = [
 			'AMC & preventive maintenance',
 		],
 	},
+	{
+		slug: 'water-purifier-repair',
+		name: 'Water Purifier Repair',
+		shortName: 'Water Purifier',
+		description: 'RO, UV & UF purifiers — filter change, motor repair, leakage fix and installation.',
+		// TODO: placeholder image reused from an existing category — replace with a real water purifier photo.
+		image: '/dishwasher.png',
+		visitFee: 'Visit from ₹299',
+		problems: [
+			'Low water output',
+			'Water leakage',
+			'Bad taste or odor',
+			'Motor not working',
+			'Filter change due',
+			'RO not purifying',
+		],
+	},
+	{
+		slug: 'water-geyser-repair',
+		name: 'Water Geyser Repair',
+		shortName: 'Water Geyser',
+		description: 'Instant & storage geysers — heating element, thermostat, tank and installation issues.',
+		// TODO: placeholder image reused from an existing category — replace with a real geyser photo.
+		image: '/oven.png',
+		visitFee: 'Visit from ₹299',
+		problems: [
+			'Not heating water',
+			'Water too hot',
+			'Leaking tank',
+			'Tripping MCB',
+			'Strange noise',
+			'Installation & uninstallation',
+		],
+	},
 ];

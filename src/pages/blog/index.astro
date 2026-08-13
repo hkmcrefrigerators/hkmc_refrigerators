@@ -61,16 +61,16 @@ const posts = (await getCollection("blog")).sort(
       }
       .title {
         margin: 0;
-        color: rgb(var(--black));
+        color: var(--foreground);
         line-height: 1;
       }
       .date {
         margin: 0;
-        color: rgb(var(--gray));
+        color: var(--muted-foreground);
       }
       ul li a:hover h4,
       ul li a:hover .date {
-        color: rgb(var(--accent));
+        color: var(--primary);
       }
       ul a:hover img {
         box-shadow: var(--box-shadow);
@@ -100,7 +100,7 @@ const posts = (await getCollection("blog")).sort(
         <ul>
           {
             posts.map((post) => (
-              <li class="mb-4!">
+              <li class="mb-4">
                 <a href={`/blog/${post.id}/`}>
                   {post.data.heroImage && (
                     <Image
@@ -110,8 +110,8 @@ const posts = (await getCollection("blog")).sort(
                       alt={post.data.title}
                     />
                   )}
-                  <h2 class="title text-xl! text-left! px-1.5!">{post.data.title}</h2>
-                  <p class="date text-xs! text-left! px-2!">
+                  <h2 class="title text-xl text-left px-1.5">{post.data.title}</h2>
+                  <p class="date text-xs text-left px-2">
                     <FormattedDate date={post.data.pubDate} />
                   </p>
                 </a>

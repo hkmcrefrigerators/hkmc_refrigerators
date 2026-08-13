@@ -22,6 +22,17 @@ const ogImageURL = typeof image === 'string' ? image : new URL(image.src, Astro.
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<!-- Google tag (gtag.js) -->
+<script async is:inline src="https://www.googletagmanager.com/gtag/js?id=G-8GXW88P1WJ"></script>
+<script is:inline>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+	gtag('config', 'G-8GXW88P1WJ');
+</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
 <!-- Placeholder hero/service images are hotlinked from Unsplash until real photos replace them -->

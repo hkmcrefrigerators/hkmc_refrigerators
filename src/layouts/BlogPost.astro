@@ -55,9 +55,9 @@ const breadcrumbSchema = {
 		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 		<style>
 			main {
+				/* Overrides the base layer's 720px width; max-width/centering/padding
+				   are handled by the Tailwind classes on the <main> element itself. */
 				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
 			}
 			.hero-image {
 				width: 100%;
@@ -69,11 +69,9 @@ const breadcrumbSchema = {
 				box-shadow: var(--box-shadow);
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
+				/* Width/spacing are handled by the Tailwind classes on the element
+				   itself; <main>'s max-w-4xl is the one width constraint now. */
+				color: var(--foreground);
 			}
 			.title {
 				margin-bottom: 1em;
@@ -86,7 +84,7 @@ const breadcrumbSchema = {
 			}
 			.byline {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				color: var(--muted-foreground);
 			}
 			.last-updated-on {
 				font-style: italic;
@@ -96,12 +94,12 @@ const breadcrumbSchema = {
 
 	<body>
 		<Header />
-		<main class="px-0! mx-auto! max-w-4xl!">
-			<article >
+		<main class="px-0 mx-auto max-w-4xl">
+			<article>
 				<div class="hero-image">
 					{heroImage && <Image width={1020} height={510} src={heroImage} alt={title} />}
 				</div>
-				<div class="prose  px-0! ml-0!  w-full! mx-auto">
+				<div class="prose w-full px-0 mx-auto">
 					<div class="title">
 						<div class="byline">
 							By {author} &middot; <FormattedDate date={pubDate} />
