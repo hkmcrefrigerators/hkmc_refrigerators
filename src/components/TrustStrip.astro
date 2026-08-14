@@ -1,0 +1,73 @@
+---
+// Self-contained trust strip — drop it in anywhere, no props, no heading.
+import { CITY } from '../consts';
+
+const usps = [
+	{
+		title: 'Verified technicians',
+		description: 'Background-checked, trained and ID-badged before they visit.',
+		icon: 'badge',
+	},
+	{
+		title: 'Genuine spare parts',
+		description: 'Manufacturer-approved parts with their own part warranty.',
+		icon: 'cube',
+	},
+	{
+		title: '30-day service warranty',
+		description: 'Free follow-up visit if the same issue comes back.',
+		icon: 'shield',
+	},
+	{
+		title: 'Same-day service',
+		description: `Most ${CITY} bookings get a technician the same day.`,
+		icon: 'clock',
+	},
+];
+---
+
+<section class="border-y border-zinc-200 bg-zinc-50">
+	<div class="mx-auto grid max-w-7xl grid-cols-2 gap-x-3 gap-y-4 px-4 py-8 sm:px-6 md:gap-6 lg:grid-cols-4 lg:px-8">
+		{
+			usps.map((usp) => (
+				<div class="flex items-start gap-3">
+					<span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-zinc-200">
+						{usp.icon === 'badge' && (
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5 text-zinc-900">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="m9 12 2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9.75c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.043-.133-2.056-.382-3.016Z"
+								/>
+							</svg>
+						)}
+						{usp.icon === 'cube' && (
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5 text-zinc-900">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M21 7.5 12 3 3 7.5m18 0-9 4.5m9-4.5v9L12 21m0-9L3 7.5m9 4.5v9m-9-9v9l9 4.5"
+								/>
+							</svg>
+						)}
+						{usp.icon === 'shield' && (
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5 text-zinc-900">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M12 3.25 5 5.75v5.5c0 4.5 3 7.75 7 9.5 4-1.75 7-5 7-9.5v-5.5L12 3.25Z" />
+							</svg>
+						)}
+						{usp.icon === 'clock' && (
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5 text-zinc-900">
+								<circle cx="12" cy="12" r="8.25" />
+								<path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4.5l3 1.75" />
+							</svg>
+						)}
+					</span>
+					<div>
+						<p class="mb-1 text-sm font-semibold text-zinc-900">{usp.title}</p>
+						<p class="text-xs text-zinc-500 md:text-sm">{usp.description}</p>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</section>

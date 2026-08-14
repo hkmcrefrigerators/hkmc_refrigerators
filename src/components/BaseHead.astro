@@ -11,11 +11,12 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata | string;
+	noindex?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, image = FallbackImage, noindex = false } = Astro.props;
 const ogImageURL = typeof image === 'string' ? image : new URL(image.src, Astro.url).toString();
 ---
 
@@ -54,7 +55,7 @@ const ogImageURL = typeof image === 'string' ? image : new URL(image.src, Astro.
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description} />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />

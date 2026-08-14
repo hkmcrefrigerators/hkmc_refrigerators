@@ -23,8 +23,8 @@ const today = new Date();
 				<ul class="mt-4 space-y-1">
 					{
 						serviceCategories.map((service) => (
-							<li >
-								<a href={`/#services`} class="text-sm text-zinc-600 hover:text-zinc-900">
+							<li>
+								<a href={`/services/${service.slug}`} class="text-sm text-zinc-600 hover:text-zinc-900">
 									{service.name}
 								</a>
 							</li>

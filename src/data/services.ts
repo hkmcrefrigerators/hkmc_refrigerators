@@ -121,7 +121,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Water Purifier',
 		description: 'RO, UV & UF purifiers — filter change, motor repair, leakage fix and installation.',
 		// TODO: placeholder image reused from an existing category — replace with a real water purifier photo.
-		image: '/dishwasher.png',
+		image: '/water_purifier.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Low water output',
@@ -138,7 +138,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Water Geyser',
 		description: 'Instant & storage geysers — heating element, thermostat, tank and installation issues.',
 		// TODO: placeholder image reused from an existing category — replace with a real geyser photo.
-		image: '/oven.png',
+		image: '/water_heater.png',
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not heating water',
@@ -150,3 +150,17 @@ export const serviceCategories: ServiceCategory[] = [
 		],
 	},
 ];
+
+export function getService(slug: string): ServiceCategory | undefined {
+	return serviceCategories.find((service) => service.slug === slug);
+}
+
+// A handful of problem-keywords already have a dedicated blog post — link straight to it
+// instead of the generic booking anchor, so both users and crawlers land on real answer content.
+export const problemLinks: Record<string, string> = {
+	'AC not cooling': '/blog/ac-not-cooling-common-causes',
+	'Gas leak': '/blog/ac-gas-refill-how-often',
+	'Fridge not cooling': '/blog/fridge-not-cooling-freezer-fine',
+	'Freezer fine, fridge warm': '/blog/fridge-not-cooling-freezer-fine',
+	'Not draining water': '/blog/washing-machine-not-draining-fixes',
+};
