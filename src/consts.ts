@@ -3,6 +3,10 @@
 
 export const BRAND_NAME = 'HKMC Refrigerators';
 export const CITY = 'Namma Bangalore';
+// "Namma Bangalore" is a colloquial nickname, not a valid postal locality — use this
+// instead of CITY in structured data (schema.org addressLocality / areaServed) so
+// search engines get a real place name. Keep CITY for all visible marketing copy.
+export const CITY_FORMAL = 'Bangalore';
 
 export const SITE_TITLE = 'HKMC Refrigerators | AC, Fridge & Appliance Repair in Bangalore';
 export const SITE_DESCRIPTION =

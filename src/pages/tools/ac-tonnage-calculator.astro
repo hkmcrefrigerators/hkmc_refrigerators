@@ -1,0 +1,281 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { BRAND_NAME, CITY, PHONE_DISPLAY, PHONE_HREF } from '../../consts';
+import { getTool, tools } from '../../data/tools';
+
+const tool = getTool('ac-tonnage-calculator')!;
+const otherTools = tools.filter((t) => t.slug !== tool.slug);
+
+const title = `${tool.name} — What Size AC Do I Need? | ${BRAND_NAME}`;
+const description = `Free AC tonnage calculator for ${CITY} homes. Enter your room size to get a 1, 1.5 or 2 ton recommendation in seconds — no signup needed.`;
+
+const faqs = [
+	{
+		q: 'How many tons of AC do I need for a 120 sq ft room?',
+		a: 'For a standard room with normal sun exposure and up to 2 occupants, a 120 sq ft room typically needs a 1 ton AC. Add 10% for a west-facing or top-floor room with high heat gain.',
+	},
+	{
+		q: 'Is it bad to oversize an AC?',
+		a: 'Yes. An oversized AC cools the room too fast without properly removing humidity, leading to a clammy feel, more on/off cycling, higher electricity bills, and faster wear on the compressor.',
+	},
+	{
+		q: 'Does the number of people in the room matter?',
+		a: 'Yes — each person adds body heat to the room. This calculator adds roughly 600 BTU of extra cooling capacity for every occupant beyond two.',
+	},
+];
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+		{ '@type': 'ListItem', position: 2, name: 'Tools', item: new URL('/tools', Astro.site).toString() },
+		{ '@type': 'ListItem', position: 3, name: tool.name, item: new URL(Astro.url.pathname, Astro.site).toString() },
+	],
+};
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: faqs.map((faq) => ({
+		'@type': 'Question',
+		name: faq.q,
+		acceptedAnswer: { '@type': 'Answer', text: faq.a },
+	})),
+};
+---
+
+<!doctype html>
+<html lang="en-IN">
+	<head>
+		<BaseHead title={title} description={description} />
+		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+		<style>
+			main {
+				width: 100%;
+				max-width: 100%;
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body class="bg-white text-zinc-900">
+		<Header />
+		<main>
+			<!-- Hero -->
+			<section class="mx-auto max-w-3xl px-4 pt-10 pb-8 text-center sm:px-6 lg:px-8 lg:pt-16">
+				<p class="text-sm font-semibold tracking-wide text-zinc-500 uppercase">Free tool</p>
+				<h1 class="mt-3 text-4xl font-extrabold tracking-tight text-zinc-950 sm:text-5xl">
+					AC Tonnage Calculator
+				</h1>
+				<p class="mx-auto mt-5 max-w-xl text-lg leading-7 text-zinc-600">
+					Find the right AC size for your room in seconds — no signup, no email required.
+				</p>
+			</section>
+
+			<!-- Calculator -->
+			<section class="mx-auto max-w-2xl px-4 pb-16 sm:px-6 lg:px-8">
+				<div class="rounded-2xl border border-zinc-200 p-6 sm:p-8">
+					<div class="grid gap-5 sm:grid-cols-2">
+						<div class="sm:col-span-2">
+							<label for="area" class="text-sm font-medium text-zinc-800">Room area (sq ft)</label>
+							<input
+								type="number"
+								id="area"
+								min="1"
+								placeholder="e.g. 140"
+								class="mt-1.5 block w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+							/>
+							<p class="mt-1 text-xs text-zinc-500">Length × width of the room, in feet.</p>
+						</div>
+						<div>
+							<label for="exposure" class="text-sm font-medium text-zinc-800">Sun exposure</label>
+							<select
+								id="exposure"
+								class="mt-1.5 block w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-2.5 text-sm text-zinc-900 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+							>
+								<option value="low">Normal (shaded / middle floor)</option>
+								<option value="high">High (top floor / west-facing)</option>
+							</select>
+						</div>
+						<div>
+							<label for="occupants" class="text-sm font-medium text-zinc-800">Usual occupants</label>
+							<input
+								type="number"
+								id="occupants"
+								min="1"
+								value="2"
+								class="mt-1.5 block w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm text-zinc-900 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+							/>
+						</div>
+					</div>
+					<button
+						id="calculate-btn"
+						type="button"
+						class="mt-6 w-full rounded-full bg-zinc-900 px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-zinc-700"
+					>
+						Calculate AC size
+					</button>
+
+					<div id="result" class="mt-6 hidden rounded-xl bg-zinc-50 p-5 text-center">
+						<p class="text-sm font-medium text-zinc-600">Recommended AC size</p>
+						<p id="result-value" class="mt-1 text-3xl font-extrabold text-zinc-950"></p>
+						<p id="result-note" class="mt-2 text-sm text-zinc-600"></p>
+					</div>
+					<p id="result-error" class="mt-4 hidden text-sm font-medium text-red-600">
+						Please enter a valid room area.
+					</p>
+				</div>
+
+				<div class="mt-8">
+					<a
+						href="/#book"
+						class="block rounded-full bg-zinc-900 px-6 py-3.5 text-center text-base font-semibold text-white transition-colors hover:bg-zinc-700"
+					>
+						Book AC Installation or Service
+					</a>
+				</div>
+			</section>
+
+			<!-- How it works -->
+			<section class="mx-auto max-w-2xl px-4 pb-16 sm:px-6 lg:px-8">
+				<h2 class="text-xl font-bold text-zinc-950">How this is calculated</h2>
+				<p class="mt-3 text-sm leading-6 text-zinc-600">
+					We use the commonly cited Indian sizing guideline of roughly 100 BTU of cooling per square
+					foot (close to the standard "120 sq ft per ton" rule of thumb), add 10% for high sun exposure
+					(top floor or west-facing rooms heat up faster), and add roughly 600 BTU for each occupant
+					beyond two. The result is converted to tons (1 ton = 12,000 BTU) and rounded up to the
+					nearest standard AC size — 1, 1.5 or 2 ton. This is a general guideline; a technician can give
+					you an exact recommendation on-site, especially for irregular rooms or false ceilings.
+				</p>
+			</section>
+
+			<!-- FAQ -->
+			<section class="bg-zinc-50 py-16 lg:py-24">
+				<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+					<h2 class="text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl">Frequently asked questions</h2>
+					<div class="mt-8 divide-y divide-zinc-200 rounded-2xl bg-white ring-1 ring-zinc-200">
+						{
+							faqs.map((faq) => (
+								<details class="group p-5 open:bg-zinc-50/60 first:rounded-t-2xl last:rounded-b-2xl">
+									<summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-zinc-950">
+										{faq.q}
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											class="size-5 shrink-0 text-zinc-500 transition-transform group-open:rotate-45"
+										>
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+										</svg>
+									</summary>
+									<p class="mt-3 text-sm leading-6 text-zinc-600">{faq.a}</p>
+								</details>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Other tools -->
+			<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+				<h2 class="text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl">More free tools</h2>
+				<div class="mt-8 grid gap-6 sm:grid-cols-2">
+					{
+						otherTools.map((other) => (
+							<a
+								href={`/tools/${other.slug}/`}
+								class="rounded-2xl border border-zinc-200 p-6 transition-shadow hover:shadow-lg"
+							>
+								<h3 class="text-lg font-semibold text-zinc-950">{other.name}</h3>
+								<p class="mt-1.5 text-sm text-zinc-600">{other.description}</p>
+							</a>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- Final CTA -->
+			<section class="bg-zinc-950">
+				<div class="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
+					<h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+						Ready to install or service your AC?
+					</h2>
+					<p class="mx-auto mt-3 max-w-xl text-zinc-400">
+						Verified technicians, genuine parts, transparent pricing — across {CITY}.
+					</p>
+					<div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+						<a
+							href="/#book"
+							class="rounded-full bg-white px-7 py-3.5 text-base font-semibold text-zinc-950 transition-colors hover:bg-zinc-200"
+						>
+							Book a Repair
+						</a>
+						<a
+							href={PHONE_HREF}
+							class="rounded-full border border-white/30 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:border-white"
+						>
+							Call {PHONE_DISPLAY}
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			const areaInput = document.getElementById('area') as HTMLInputElement;
+			const exposureSelect = document.getElementById('exposure') as HTMLSelectElement;
+			const occupantsInput = document.getElementById('occupants') as HTMLInputElement;
+			const calculateBtn = document.getElementById('calculate-btn');
+			const result = document.getElementById('result');
+			const resultValue = document.getElementById('result-value');
+			const resultNote = document.getElementById('result-note');
+			const resultError = document.getElementById('result-error');
+
+			calculateBtn?.addEventListener('click', () => {
+				const area = parseFloat(areaInput.value);
+				const occupants = parseInt(occupantsInput.value, 10) || 2;
+				const exposure = exposureSelect.value;
+
+				if (!area || area <= 0) {
+					result?.classList.add('hidden');
+					resultError?.classList.remove('hidden');
+					return;
+				}
+				resultError?.classList.add('hidden');
+
+				let btu = area * 100;
+				if (exposure === 'high') btu *= 1.1;
+				if (occupants > 2) btu += (occupants - 2) * 600;
+
+				const tons = btu / 12000;
+				let label: string;
+				let note: string;
+
+				if (tons <= 1.1) {
+					label = '1 Ton';
+					note = 'Suits most bedrooms and small living rooms of this size.';
+				} else if (tons <= 1.6) {
+					label = '1.5 Ton';
+					note = 'A common choice for mid-sized bedrooms and living rooms.';
+				} else if (tons <= 2.2) {
+					label = '2 Ton';
+					note = 'Recommended for larger living rooms or open-plan spaces.';
+				} else {
+					label = '2+ Ton';
+					note = 'This room may need a higher-capacity unit or two ACs — a technician can confirm on-site.';
+				}
+
+				if (resultValue) resultValue.textContent = label;
+				if (resultNote) resultNote.textContent = note;
+				result?.classList.remove('hidden');
+			});
+		</script>
+	</body>
+</html>

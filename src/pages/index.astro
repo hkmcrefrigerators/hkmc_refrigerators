@@ -8,6 +8,7 @@ import TrustStrip from "../components/TrustStrip.astro";
 import {
   BRAND_NAME,
   CITY,
+  CITY_FORMAL,
   CONTACT_EMAIL,
   OPENING_HOURS,
   PHONE_DISPLAY,
@@ -55,10 +56,12 @@ const steps = [
   },
 ];
 
+// Every stat here must be true from day one — no track-record numbers (repair counts,
+// average response times) until real operational data exists to back them up.
 const stats = [
-  { value: "10,000+", label: "Repairs completed" },
+  { value: "All Brands", label: "Serviced" },
   { value: "190+", label: `Areas covered in ${CITY}` },
-  { value: "<60 min", label: "Avg. response time" },
+  { value: "₹299", label: "Starting visit fee" },
   { value: "30-Day", label: "Service warranty" },
 ];
 
@@ -84,27 +87,27 @@ const neighborhoods = [
 const faqs = [
   {
     q: `Which appliances do you repair in ${CITY}?`,
-    a: "We repair air conditioners, refrigerators, washing machines, microwaves, dishwashers, and commercial refrigeration & HVAC equipment for homes and businesses.",
+    a: "We repair air conditioners, refrigerators, washing machines, microwaves, dishwashers, water purifiers and water geysers, plus commercial refrigeration & HVAC equipment for businesses. Beyond repairs, we also handle installation, uninstallation and general/preventive service for most of these.",
   },
   {
     q: "How fast can a technician reach me?",
-    a: `Most bookings in ${CITY} get a technician visit the same day, often within 60–90 minutes for urgent requests.`,
+    a: `Book online or call us directly, and most requests in ${CITY} get a technician visit the same day — you'll get a confirmation call to arrange the exact slot rather than a fixed time window upfront.`,
   },
   {
     q: "Do you offer a warranty on repairs?",
-    a: "Yes — every repair carries a 30-day service warranty on the same issue, and genuine parts carry the manufacturer’s part warranty.",
+    a: "Yes — every repair carries a 30-day service warranty on the same issue. If it recurs within that window, we send a technician back at no extra charge, and genuine parts carry the manufacturer's own part warranty on top of that.",
   },
   {
     q: "Do you repair all brands?",
-    a: "Yes. Our technicians service all major brands, including LG, Samsung, Whirlpool, Voltas, Godrej, IFB, Bosch and Daikin.",
+    a: "Yes. Our technicians service all major brands, including LG, Samsung, Whirlpool, Voltas, Godrej, IFB, Bosch and Daikin, and we use manufacturer-approved parts wherever possible rather than generic substitutes.",
   },
   {
     q: "What does a visit cost?",
-    a: "Visit charges start from ₹299 for home appliances and ₹499 for commercial equipment, adjusted against the final repair cost. You will see the full estimate before any work begins.",
+    a: "Visit charges start from ₹299 for home appliances and ₹499 for commercial equipment. This covers diagnosis; the visit fee is then adjusted against the final repair quote, and you'll see that full estimate before any repair work begins — no obligation to proceed if you'd rather not.",
   },
   {
     q: "Do you work with restaurants, offices and other businesses?",
-    a: "Yes — we service restaurants, cloud kitchens, cafes, supermarkets, hospitals, hotels and offices, including AMC (annual maintenance contract) plans.",
+    a: "Yes — we service restaurants, cloud kitchens, cafes, supermarkets, hospitals, hotels and offices, covering equipment like deep freezers, visi coolers, cold rooms and ductable AC, including AMC (annual maintenance contract) plans for ongoing upkeep.",
   },
 ];
 
@@ -121,13 +124,13 @@ const localBusinessSchema = {
   url: Astro.site?.toString(),
   address: {
     "@type": "PostalAddress",
-    addressLocality: CITY,
+    addressLocality: CITY_FORMAL,
     addressRegion: "Karnataka",
     addressCountry: "IN",
   },
   areaServed: {
     "@type": "City",
-    name: CITY,
+    name: CITY_FORMAL,
   },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
@@ -216,11 +219,11 @@ const howToSchema = {
             >
               AC, fridge &amp; appliance repair — at your doorstep in {CITY}
             </h1>
-            <!-- <p class="mt-5 max-w-xl text-lg leading-7 text-zinc-600">
-                Verified technicians for air conditioners, refrigerators, washing
-                machines, microwaves, dishwashers and commercial refrigeration.
-                Transparent pricing, genuine parts, 30-day warranty.
-              </p> -->
+            <p class="mt-5 max-w-xl text-lg leading-7 text-zinc-600">
+              Verified technicians for air conditioners, refrigerators, washing
+              machines, microwaves, dishwashers and commercial refrigeration.
+              Transparent pricing, genuine parts, 30-day warranty.
+            </p>
             <div class="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#book"
@@ -310,7 +313,7 @@ const howToSchema = {
         <div class="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-6">
           {
             serviceCategories.map((service) => (
-              <ServiceCard service={service} href={`/services/${service.slug}`} />
+              <ServiceCard service={service} href={`/services/${service.slug}/`} />
             ))
           }
         </div>
@@ -364,7 +367,7 @@ const howToSchema = {
             serviceCategories.map((service) => (
               <div>
                 <h3 class="text-xl font-semibold text-zinc-950">
-                  <a href={`/services/${service.slug}`} class="hover:underline">
+                  <a href={`/services/${service.slug}/`} class="hover:underline">
                     {service.name}
                   </a>
                 </h3>

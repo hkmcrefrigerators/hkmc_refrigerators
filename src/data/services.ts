@@ -1,13 +1,26 @@
 // Service catalogue used across the homepage (booking grid, common-problems section)
-// and as the source of truth for future /services/[slug] pages.
+// and the /services/[slug] pages.
+//
+// Images live in src/assets/services/ (not public/) so they go through Astro's
+// image pipeline — automatic compression, resizing and format negotiation via
+// the <Image> component in ServiceCard.astro and each service page. Do not move
+// these back to public/ — that bypasses optimization entirely.
+import type { ImageMetadata } from 'astro';
+import acImage from '../assets/services/ac.png';
+import dishwasherImage from '../assets/services/dishwasher.png';
+import fridgeImage from '../assets/services/fridge.png';
+import hvacImage from '../assets/services/hv-ac.png';
+import microwaveImage from '../assets/services/oven.png';
+import washingMachineImage from '../assets/services/washing-machine.png';
+import waterGeyserImage from '../assets/services/water_heater.png';
+import waterPurifierImage from '../assets/services/water_purifier.png';
 
 export interface ServiceCategory {
 	slug: string;
 	name: string;
 	shortName: string;
 	description: string;
-	/** Root-relative URL, e.g. "/ac.png" for a file at public/ac.png — no "/public" prefix; Astro serves public/ contents from the site root. */
-	image: string;
+	image: ImageMetadata;
 	visitFee: string;
 	problems: string[];
 }
@@ -18,7 +31,7 @@ export const serviceCategories: ServiceCategory[] = [
 		name: 'AC Repair & Service',
 		shortName: 'AC',
 		description: 'Split, window & inverter AC — installation, gas refill, general service and repair.',
-		image: '/ac.png',
+		image: acImage,
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'AC not cooling',
@@ -34,8 +47,7 @@ export const serviceCategories: ServiceCategory[] = [
 		name: 'Refrigerator Repair',
 		shortName: 'Fridge',
 		description: 'Single, double & side-by-side door fridges — cooling issues, gas charging, compressor repair.',
-		image:
-			'/fridge.png',
+		image: fridgeImage,
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Fridge not cooling',
@@ -51,8 +63,7 @@ export const serviceCategories: ServiceCategory[] = [
 		name: 'Washing Machine Repair',
 		shortName: 'Washing Machine',
 		description: 'Front load, top load & semi-automatic — spin, drainage, motor and PCB issues.',
-		image:
-			'/washing-machine.png',
+		image: washingMachineImage,
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not spinning',
@@ -68,8 +79,7 @@ export const serviceCategories: ServiceCategory[] = [
 		name: 'Microwave Repair',
 		shortName: 'Microwave',
 		description: 'Solo, grill & convection microwaves — heating faults, sparking, display and door issues.',
-		image:
-			'/oven.png',
+		image: microwaveImage,
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not heating',
@@ -85,8 +95,7 @@ export const serviceCategories: ServiceCategory[] = [
 		name: 'Dishwasher Repair',
 		shortName: 'Dishwasher',
 		description: 'Free-standing, built-in & countertop dishwashers — installation, descaling, repair.',
-		image:
-			'/dishwasher.png',
+		image: dishwasherImage,
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not draining',
@@ -103,8 +112,7 @@ export const serviceCategories: ServiceCategory[] = [
 		shortName: 'Commercial & HVAC',
 		description:
 			'Deep freezers, visi coolers, cold rooms, ductable & VRF AC — for restaurants, cafes, hospitals & offices.',
-		image:
-			'/hv-ac.png',
+		image: hvacImage,
 		visitFee: 'Visit from ₹499',
 		problems: [
 			'Deep freezer not cooling',
@@ -120,8 +128,7 @@ export const serviceCategories: ServiceCategory[] = [
 		name: 'Water Purifier Repair',
 		shortName: 'Water Purifier',
 		description: 'RO, UV & UF purifiers — filter change, motor repair, leakage fix and installation.',
-		// TODO: placeholder image reused from an existing category — replace with a real water purifier photo.
-		image: '/water_purifier.png',
+		image: waterPurifierImage,
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Low water output',
@@ -137,8 +144,7 @@ export const serviceCategories: ServiceCategory[] = [
 		name: 'Water Geyser Repair',
 		shortName: 'Water Geyser',
 		description: 'Instant & storage geysers — heating element, thermostat, tank and installation issues.',
-		// TODO: placeholder image reused from an existing category — replace with a real geyser photo.
-		image: '/water_heater.png',
+		image: waterGeyserImage,
 		visitFee: 'Visit from ₹299',
 		problems: [
 			'Not heating water',
@@ -158,9 +164,9 @@ export function getService(slug: string): ServiceCategory | undefined {
 // A handful of problem-keywords already have a dedicated blog post — link straight to it
 // instead of the generic booking anchor, so both users and crawlers land on real answer content.
 export const problemLinks: Record<string, string> = {
-	'AC not cooling': '/blog/ac-not-cooling-common-causes',
-	'Gas leak': '/blog/ac-gas-refill-how-often',
-	'Fridge not cooling': '/blog/fridge-not-cooling-freezer-fine',
-	'Freezer fine, fridge warm': '/blog/fridge-not-cooling-freezer-fine',
-	'Not draining water': '/blog/washing-machine-not-draining-fixes',
+	'AC not cooling': '/blog/ac-not-cooling-common-causes/',
+	'Gas leak': '/blog/ac-gas-refill-how-often/',
+	'Fridge not cooling': '/blog/fridge-not-cooling-freezer-fine/',
+	'Freezer fine, fridge warm': '/blog/fridge-not-cooling-freezer-fine/',
+	'Not draining water': '/blog/washing-machine-not-draining-fixes/',
 };

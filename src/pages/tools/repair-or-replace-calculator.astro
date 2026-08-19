@@ -1,0 +1,305 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { BRAND_NAME, CITY, PHONE_DISPLAY, PHONE_HREF } from '../../consts';
+import { getTool, tools } from '../../data/tools';
+
+const tool = getTool('repair-or-replace-calculator')!;
+const otherTools = tools.filter((t) => t.slug !== tool.slug);
+
+const title = `${tool.name} — Should I Fix or Buy New? | ${BRAND_NAME}`;
+const description = `Free repair-or-replace calculator for AC, fridge, washing machine and other appliances. Enter the age, repair quote and price of a new one for a clear recommendation.`;
+
+const faqs = [
+	{
+		q: 'What is the 50% rule for appliance repair?',
+		a: "A common industry guideline: if the repair cost is more than 50% of the price of a new appliance, and the appliance is already more than halfway through its typical lifespan, replacing usually makes more financial sense than repairing.",
+	},
+	{
+		q: 'Is it always cheaper to repair than replace?',
+		a: "Not always — an old appliance nearing the end of its typical lifespan may need repeat repairs even after this one, and newer models are often more energy-efficient. But for a mid-life appliance, a single repair is usually far cheaper than replacing.",
+	},
+	{
+		q: 'Should I still get a technician to look at it if the calculator says replace?',
+		a: 'Often, yes. A quick diagnosis can confirm whether the fault is actually as serious as assumed — sometimes what looks like a major issue is a simple, inexpensive fix.',
+	},
+];
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+		{ '@type': 'ListItem', position: 2, name: 'Tools', item: new URL('/tools', Astro.site).toString() },
+		{ '@type': 'ListItem', position: 3, name: tool.name, item: new URL(Astro.url.pathname, Astro.site).toString() },
+	],
+};
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: faqs.map((faq) => ({
+		'@type': 'Question',
+		name: faq.q,
+		acceptedAnswer: { '@type': 'Answer', text: faq.a },
+	})),
+};
+---
+
+<!doctype html>
+<html lang="en-IN">
+	<head>
+		<BaseHead title={title} description={description} />
+		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+		<style>
+			main {
+				width: 100%;
+				max-width: 100%;
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body class="bg-white text-zinc-900">
+		<Header />
+		<main>
+			<!-- Hero -->
+			<section class="mx-auto max-w-3xl px-4 pt-10 pb-8 text-center sm:px-6 lg:px-8 lg:pt-16">
+				<p class="text-sm font-semibold tracking-wide text-zinc-500 uppercase">Free tool</p>
+				<h1 class="mt-3 text-4xl font-extrabold tracking-tight text-zinc-950 sm:text-5xl">
+					Repair or Replace Calculator
+				</h1>
+				<p class="mx-auto mt-5 max-w-xl text-lg leading-7 text-zinc-600">
+					A straight answer based on your appliance's age and the numbers — not a guess.
+				</p>
+			</section>
+
+			<!-- Calculator -->
+			<section class="mx-auto max-w-2xl px-4 pb-16 sm:px-6 lg:px-8">
+				<div class="rounded-2xl border border-zinc-200 p-6 sm:p-8">
+					<div class="grid gap-5 sm:grid-cols-2">
+						<div class="sm:col-span-2">
+							<label for="appliance" class="text-sm font-medium text-zinc-800">Appliance</label>
+							<select
+								id="appliance"
+								class="mt-1.5 block w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-2.5 text-sm text-zinc-900 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+							>
+								<option value="ac">Air Conditioner</option>
+								<option value="fridge">Refrigerator</option>
+								<option value="washing_machine">Washing Machine</option>
+								<option value="microwave">Microwave</option>
+								<option value="dishwasher">Dishwasher</option>
+								<option value="water_purifier">Water Purifier</option>
+								<option value="water_geyser">Water Geyser</option>
+							</select>
+						</div>
+						<div>
+							<label for="age" class="text-sm font-medium text-zinc-800">Age (years)</label>
+							<input
+								type="number"
+								id="age"
+								min="0"
+								step="0.5"
+								placeholder="e.g. 6"
+								class="mt-1.5 block w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+							/>
+						</div>
+						<div>
+							<label for="repair-cost" class="text-sm font-medium text-zinc-800">Repair quote (₹)</label>
+							<input
+								type="number"
+								id="repair-cost"
+								min="0"
+								placeholder="e.g. 3500"
+								class="mt-1.5 block w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+							/>
+						</div>
+						<div class="sm:col-span-2">
+							<label for="replacement-price" class="text-sm font-medium text-zinc-800">
+								Price of a new one (₹)
+							</label>
+							<input
+								type="number"
+								id="replacement-price"
+								min="0"
+								placeholder="e.g. 32000"
+								class="mt-1.5 block w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900 focus:outline-none"
+							/>
+						</div>
+					</div>
+					<button
+						id="calculate-btn"
+						type="button"
+						class="mt-6 w-full rounded-full bg-zinc-900 px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-zinc-700"
+					>
+						Get my recommendation
+					</button>
+
+					<div id="result" class="mt-6 hidden rounded-xl bg-zinc-50 p-5 text-center">
+						<p id="result-value" class="text-2xl font-extrabold text-zinc-950"></p>
+						<p id="result-note" class="mx-auto mt-2 max-w-md text-sm text-zinc-600"></p>
+					</div>
+					<p id="result-error" class="mt-4 hidden text-sm font-medium text-red-600">
+						Please fill in age, repair quote and replacement price.
+					</p>
+				</div>
+
+				<div class="mt-8">
+					<a
+						href="/#book"
+						class="block rounded-full bg-zinc-900 px-6 py-3.5 text-center text-base font-semibold text-white transition-colors hover:bg-zinc-700"
+					>
+						Book a Diagnosis — ₹299 Visit Fee
+					</a>
+				</div>
+			</section>
+
+			<!-- How it works -->
+			<section class="mx-auto max-w-2xl px-4 pb-16 sm:px-6 lg:px-8">
+				<h2 class="text-xl font-bold text-zinc-950">How this is calculated</h2>
+				<p class="mt-3 text-sm leading-6 text-zinc-600">
+					This uses the widely-cited "50% rule": if the repair cost is 50% or more of a new
+					appliance's price, or the appliance has already used up 70% or more of its typical
+					lifespan, replacing usually makes more sense. Typical lifespans used here — AC 12 years,
+					refrigerator 13, washing machine 10, microwave 9, dishwasher 10, water purifier 6, water
+					geyser 8 — are general industry averages; your specific appliance may last longer or
+					shorter depending on brand, usage and maintenance.
+				</p>
+			</section>
+
+			<!-- FAQ -->
+			<section class="bg-zinc-50 py-16 lg:py-24">
+				<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+					<h2 class="text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl">Frequently asked questions</h2>
+					<div class="mt-8 divide-y divide-zinc-200 rounded-2xl bg-white ring-1 ring-zinc-200">
+						{
+							faqs.map((faq) => (
+								<details class="group p-5 open:bg-zinc-50/60 first:rounded-t-2xl last:rounded-b-2xl">
+									<summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-zinc-950">
+										{faq.q}
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											class="size-5 shrink-0 text-zinc-500 transition-transform group-open:rotate-45"
+										>
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+										</svg>
+									</summary>
+									<p class="mt-3 text-sm leading-6 text-zinc-600">{faq.a}</p>
+								</details>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Other tools -->
+			<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+				<h2 class="text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl">More free tools</h2>
+				<div class="mt-8 grid gap-6 sm:grid-cols-2">
+					{
+						otherTools.map((other) => (
+							<a
+								href={`/tools/${other.slug}/`}
+								class="rounded-2xl border border-zinc-200 p-6 transition-shadow hover:shadow-lg"
+							>
+								<h3 class="text-lg font-semibold text-zinc-950">{other.name}</h3>
+								<p class="mt-1.5 text-sm text-zinc-600">{other.description}</p>
+							</a>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- Final CTA -->
+			<section class="bg-zinc-950">
+				<div class="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
+					<h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Either way, start with a diagnosis.</h2>
+					<p class="mx-auto mt-3 max-w-xl text-zinc-400">
+						Verified technicians, genuine parts, transparent pricing — across {CITY}.
+					</p>
+					<div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+						<a
+							href="/#book"
+							class="rounded-full bg-white px-7 py-3.5 text-base font-semibold text-zinc-950 transition-colors hover:bg-zinc-200"
+						>
+							Book a Repair
+						</a>
+						<a
+							href={PHONE_HREF}
+							class="rounded-full border border-white/30 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:border-white"
+						>
+							Call {PHONE_DISPLAY}
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			const lifespans: Record<string, number> = {
+				ac: 12,
+				fridge: 13,
+				washing_machine: 10,
+				microwave: 9,
+				dishwasher: 10,
+				water_purifier: 6,
+				water_geyser: 8,
+			};
+
+			const applianceSelect = document.getElementById('appliance') as HTMLSelectElement;
+			const ageInput = document.getElementById('age') as HTMLInputElement;
+			const repairCostInput = document.getElementById('repair-cost') as HTMLInputElement;
+			const replacementPriceInput = document.getElementById('replacement-price') as HTMLInputElement;
+			const calculateBtn = document.getElementById('calculate-btn');
+			const result = document.getElementById('result');
+			const resultValue = document.getElementById('result-value');
+			const resultNote = document.getElementById('result-note');
+			const resultError = document.getElementById('result-error');
+
+			calculateBtn?.addEventListener('click', () => {
+				const age = parseFloat(ageInput.value);
+				const repairCost = parseFloat(repairCostInput.value);
+				const replacementPrice = parseFloat(replacementPriceInput.value);
+
+				if (!age || !repairCost || !replacementPrice || replacementPrice <= 0) {
+					result?.classList.add('hidden');
+					resultError?.classList.remove('hidden');
+					return;
+				}
+				resultError?.classList.add('hidden');
+
+				const lifespan = lifespans[applianceSelect.value] ?? 10;
+				const lifespanUsedPct = age / lifespan;
+				const costRatio = repairCost / replacementPrice;
+
+				let label: string;
+				let note: string;
+
+				if (costRatio >= 0.5 || lifespanUsedPct >= 0.7) {
+					label = 'Consider Replacing';
+					note =
+						'The repair cost is a large share of a new unit’s price, and/or the appliance is well into its typical lifespan. A new appliance may be the better long-term value.';
+				} else if (costRatio >= 0.3 && lifespanUsedPct >= 0.5) {
+					label = 'Borderline — Get a Second Opinion';
+					note =
+						'This one is close either way. A technician visit can confirm the exact fault and whether more issues are likely soon.';
+				} else {
+					label = 'Repair It';
+					note =
+						'The repair cost is a small fraction of buying new, and the appliance still has good life left in it. Repairing is the better value here.';
+				}
+
+				if (resultValue) resultValue.textContent = label;
+				if (resultNote) resultNote.textContent = note;
+				result?.classList.remove('hidden');
+			});
+		</script>
+	</body>
+</html>

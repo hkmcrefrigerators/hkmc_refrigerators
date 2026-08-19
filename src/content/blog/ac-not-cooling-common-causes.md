@@ -1,6 +1,6 @@
 ---
 title: 'AC Not Cooling? 7 Common Causes (And When to Call a Technician)'
-description: 'Split and window AC blowing warm air in Bangalore? Here are the 7 most common reasons an AC stops cooling, quick checks you can do yourself, and when to call a technician.'
+description: 'Split and window AC blowing warm air? 7 common reasons an AC stops cooling, quick checks you can do yourself, and when to call a technician.'
 author: 'HKMC Technical Team'
 pubDate: 'Jul 05 2026'
 heroImage: '../../assets/blog-placeholder-3.jpg'
@@ -14,7 +14,7 @@ A blocked filter restricts airflow over the cooling coil, so the unit runs but b
 
 ## 2. Low refrigerant (gas leak)
 
-If your AC blows air that's only slightly cool, or you notice ice forming on the indoor unit, it likely has a refrigerant leak. Refrigerant doesn't get "used up" in normal operation — a low level almost always means a leak that needs to be found and sealed, not just topped up. See [how often an AC actually needs a gas refill](/blog/ac-gas-refill-how-often) for more on this.
+If your AC blows air that's only slightly cool, or you notice ice forming on the indoor unit, it likely has a refrigerant leak. Refrigerant doesn't get "used up" in normal operation — a low level almost always means a leak that needs to be found and sealed, not just topped up. See [how often an AC actually needs a gas refill](/blog/ac-gas-refill-how-often/) for more on this.
 
 ## 3. Dirty outdoor unit (condenser)
 
@@ -30,7 +30,7 @@ Sometimes the AC itself is fine but the temperature sensor is misreading the roo
 
 ## 6. Undersized or overworked unit
 
-A 1-ton AC in a room that really needs 1.5 tons will run constantly and still struggle on the hottest days. If cooling has always felt marginal — not just recently — sizing may be the real issue.
+A 1-ton AC in a room that really needs 1.5 tons will run constantly and still struggle on the hottest days. If cooling has always felt marginal — not just recently — sizing may be the real issue. Use our free [AC tonnage calculator](/tools/ac-tonnage-calculator/) to check whether your current unit actually matches your room size.
 
 ## 7. Compressor wear
 
@@ -43,6 +43,6 @@ On older units, a weakening compressor can't build enough pressure to cool prope
 - Check the remote/thermostat is set to cool, not fan-only
 - Check the circuit breaker hasn't tripped
 
-If cooling is still weak after these checks, it's time for a proper diagnosis — some of these issues (gas leaks, compressor faults, sensor problems) need the right tools and a trained eye to fix safely.
+If cooling is still weak after these checks, it's time for a proper diagnosis — some of these issues (gas leaks, compressor faults, sensor problems) need the right tools and a trained eye to fix safely. If the unit is old and this isn't its first issue, our [repair or replace calculator](/tools/repair-or-replace-calculator/) can help you decide which makes more sense.
 
 **Need a technician in Bangalore?** [Book an AC repair](/#book) and we'll have someone at your door, usually the same day.

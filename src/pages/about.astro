@@ -5,7 +5,7 @@ import Header from "../components/Header.astro";
 import { BRAND_NAME, CITY } from "../consts";
 
 const title = `About Us | ${BRAND_NAME}`;
-const description = `${BRAND_NAME} is a technician network for AC, refrigerator, washing machine and appliance repair across ${CITY} — verified technicians, genuine parts, and upfront pricing on every visit.`;
+const description = `${BRAND_NAME} is a technician network for AC, fridge, washing machine and appliance repair across ${CITY} — verified, upfront pricing.`;
 
 const heroImage =
   "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWk5RQ_zi1TO6An1lLoBBz9D2UVahk-ofzPh6k1XdVk0yRiXTT-V-Sqzdyg3174znYH9sC3M12cZbRw5lHOAg4GOOcdXYf-JTZ5Xo6Y441ANw7iXTLE5A0hpwv_ysWbI9Jo0mjIwVQ=s1360-w1360-h1020-rw";
@@ -35,10 +35,12 @@ const values = [
   },
 ];
 
+// Every stat here must be true from day one — no track-record numbers (repair counts,
+// average response times) until real operational data exists to back them up.
 const stats = [
-  { value: "10,000+", label: "Repairs completed" },
+  { value: "All Brands", label: "Serviced" },
   { value: "190+", label: `Areas covered in ${CITY}` },
-  { value: "<60 min", label: "Avg. response time" },
+  { value: "₹299", label: "Starting visit fee" },
   { value: "30-Day", label: "Service warranty" },
 ];
 
@@ -154,7 +156,7 @@ const organizationSchema = {
       </section>
 
       <!-- Values -->
-      <section class="bg-zinc-950 py-16 text-white lg:py-24">
+      <section id="how-we-operate" class="scroll-mt-20 bg-zinc-950 py-16 text-white lg:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 class="text-3xl text-white font-extrabold tracking-tight sm:text-4xl">
             How we operate

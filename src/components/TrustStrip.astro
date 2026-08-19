@@ -7,6 +7,9 @@ const usps = [
 		title: 'Verified technicians',
 		description: 'Background-checked, trained and ID-badged before they visit.',
 		icon: 'badge',
+		// Backs up the claim instead of leaving it unsubstantiated — see the vetting
+		// process on the About page.
+		href: '/about#how-we-operate',
 	},
 	{
 		title: 'Genuine spare parts',
@@ -29,8 +32,10 @@ const usps = [
 <section class="border-y border-zinc-200 bg-zinc-50">
 	<div class="mx-auto grid max-w-7xl grid-cols-2 gap-x-3 gap-y-4 px-4 py-8 sm:px-6 md:gap-6 lg:grid-cols-4 lg:px-8">
 		{
-			usps.map((usp) => (
-				<div class="flex items-start gap-3">
+			usps.map((usp) => {
+				const Wrapper = usp.href ? 'a' : 'div';
+				return (
+				<Wrapper href={usp.href} class="group flex items-start gap-3">
 					<span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-zinc-200">
 						{usp.icon === 'badge' && (
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5 text-zinc-900">
@@ -63,11 +68,12 @@ const usps = [
 						)}
 					</span>
 					<div>
-						<p class="mb-1 text-sm font-semibold text-zinc-900">{usp.title}</p>
+						<p class="mb-1 text-sm font-semibold text-zinc-900 group-hover:underline">{usp.title}</p>
 						<p class="text-xs text-zinc-500 md:text-sm">{usp.description}</p>
 					</div>
-				</div>
-			))
+				</Wrapper>
+				);
+			})
 		}
 	</div>
 </section>

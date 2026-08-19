@@ -8,7 +8,7 @@ import Header from "../../components/Header.astro";
 import { BRAND_NAME, CITY } from "../../consts";
 
 const title = `Blog | ${BRAND_NAME}`;
-const description = `Appliance repair tips, troubleshooting guides and maintenance advice from ${BRAND_NAME}, covering AC, refrigerator, washing machine and commercial refrigeration issues in ${CITY}.`;
+const description = `Appliance repair tips and maintenance guides from ${BRAND_NAME} — AC, fridge, washing machine and commercial refrigeration in ${CITY}.`;
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),

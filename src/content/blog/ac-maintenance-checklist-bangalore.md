@@ -1,6 +1,6 @@
 ---
 title: 'AC Maintenance Checklist for Bangalore Homes: Summer and Monsoon'
-description: "Bangalore's mix of hot summers and heavy monsoon rain is tough on AC units. Here's a simple maintenance checklist to keep yours running efficiently through both seasons."
+description: "Bangalore's hot summers and heavy monsoon are tough on AC units. A simple maintenance checklist to keep yours running efficiently."
 author: 'HKMC Technical Team'
 pubDate: 'Aug 05 2026'
 heroImage: '../../assets/blog-placeholder-5.jpg'
@@ -18,7 +18,7 @@ Bangalore's climate is unusual for AC maintenance — hot, dusty summers followe
 
 - Book a **general service** — cleaning the coils, checking refrigerant pressure, and clearing the drain line — before the peak heat months when technicians get booked out fastest.
 - Check the drain pipe isn't clogged; a blocked drain is one of the top causes of water leaking from the indoor unit once the AC starts running for longer hours.
-- If the unit is more than 8–10 years old, ask a technician whether it's still running efficiently compared to a newer inverter model — older units can cost significantly more to run.
+- If the unit is more than 8–10 years old, ask a technician whether it's still running efficiently compared to a newer inverter model — older units can cost significantly more to run. Use our free [AC running cost calculator](/tools/ac-running-cost-calculator/) to see roughly what your unit is costing you each month.
 
 ## Before monsoon (May–June)
 
@@ -33,6 +33,6 @@ Bangalore's climate is unusual for AC maintenance — hot, dusty summers followe
 - The outdoor unit is unusually loud or vibrating
 - Electricity bills have crept up without a change in usage
 
-Routine upkeep catches most problems before they become expensive ones — but when something's already wrong, a proper diagnosis beats guesswork. If cooling has already dropped off, start with [AC not cooling: 7 common causes](/blog/ac-not-cooling-common-causes) or [how often an AC actually needs a gas refill](/blog/ac-gas-refill-how-often).
+Routine upkeep catches most problems before they become expensive ones — but when something's already wrong, a proper diagnosis beats guesswork. If cooling has already dropped off, start with [AC not cooling: 7 common causes](/blog/ac-not-cooling-common-causes/) or [how often an AC actually needs a gas refill](/blog/ac-gas-refill-how-often/).
 
 **Ready for a service?** [Book an AC general service](/#book) in Bangalore, or explore our full [AC repair services](/#services).

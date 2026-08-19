@@ -1,6 +1,6 @@
 ---
 title: 'How Often Does an AC Actually Need a Gas Refill?'
-description: "'AC gas refill' is one of the most searched AC repair terms — but if your AC needs one every year, that's a sign of a leak, not routine maintenance. Here's what's actually normal."
+description: "'AC gas refill' is a top search term — but needing one every year signals a leak, not routine maintenance. Here's what's actually normal."
 author: 'HKMC Technical Team'
 pubDate: 'Jul 30 2026'
 heroImage: '../../assets/blog-placeholder-1.jpg'
@@ -32,8 +32,8 @@ Most ACs installed in India over the last several years use **R32** or **R410A**
 
 ## How often should a healthy AC need service?
 
-A **general service** (cleaning filters, coils, and checking drainage) is recommended once or twice a year, especially before Bangalore's peak summer months. A **gas refill**, on the other hand, should be rare — if you're being told you need one every cooling season, ask specifically about leak detection before agreeing to another top-up. For the full seasonal routine, see our [AC maintenance checklist for Bangalore homes](/blog/ac-maintenance-checklist-bangalore).
+A **general service** (cleaning filters, coils, and checking drainage) is recommended once or twice a year, especially before Bangalore's peak summer months. A **gas refill**, on the other hand, should be rare — if you're being told you need one every cooling season, ask specifically about leak detection before agreeing to another top-up. For the full seasonal routine, see our [AC maintenance checklist for Bangalore homes](/blog/ac-maintenance-checklist-bangalore/).
 
-Weak cooling isn't always a gas issue, either — see our [full list of common AC-not-cooling causes](/blog/ac-not-cooling-common-causes) if a refill turns out not to be the problem.
+Weak cooling isn't always a gas issue, either — see our [full list of common AC-not-cooling causes](/blog/ac-not-cooling-common-causes/) if a refill turns out not to be the problem.
 
 **Suspect a gas leak?** [Book an AC service](/#book) and we'll run a proper diagnosis — including leak detection — before recommending a refill.

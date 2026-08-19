@@ -1,6 +1,7 @@
 ---
 // Core appliance card: image, name, visit fee, linking wherever the caller needs.
 // No section heading here by design — the page/section around it owns that copy.
+import { Image } from 'astro:assets';
 import type { ServiceCategory } from '../data/services';
 
 interface Props {
@@ -16,11 +17,11 @@ const { service, href = '/#book' } = Astro.props;
 	class="group flex w-[200px] flex-col rounded-2xl border-zinc-200 transition-shadow hover:shadow-lg md:w-56"
 >
 	<div class="relative">
-		<img
+		<Image
 			src={service.image}
 			alt={service.name}
-			width="500"
-			height="250"
+			width={256}
+			height={192}
 			loading="lazy"
 			decoding="async"
 			class="z-10 aspect-4/3 w-32 mx-auto object-cover transition-transform duration-300 group-hover:scale-105"

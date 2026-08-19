@@ -1,6 +1,6 @@
 ---
 title: 'Washing Machine Not Draining? Try This Before You Book a Repair'
-description: "Water stuck in the drum at the end of a wash cycle? Here's what usually causes a washing machine to stop draining, what you can safely check yourself, and when to call a technician."
+description: "Water stuck in the drum after a wash cycle? What usually causes a washing machine to stop draining, what to check yourself, and when to call a technician."
 author: 'HKMC Technical Team'
 pubDate: 'Jul 22 2026'
 heroImage: '../../assets/blog-placeholder-2.jpg'
@@ -41,6 +41,6 @@ Occasionally the problem isn't the machine at all — the drain point it empties
 
 If the filter is clear and the hose isn't kinked but water still won't drain, the drain pump motor or the control board is the likely cause — both need a technician to test and replace safely, especially on machines still under a repair or manufacturer warranty.
 
-For a broader look at keeping appliances running smoothly between repairs, see our [AC maintenance checklist for Bangalore homes](/blog/ac-maintenance-checklist-bangalore).
+For a broader look at keeping appliances running smoothly between repairs, see our [AC maintenance checklist for Bangalore homes](/blog/ac-maintenance-checklist-bangalore/).
 
 **Washing machine stuck mid-cycle?** [Book a washing machine repair](/#book) in Bangalore and we'll get it draining — and spinning — again.

@@ -1,10 +1,8 @@
-# new code Astro Starter Kit: Blog
+"10,000+ repairs completed" and "<60 min avg. response time"
 
-```sh
-bun create astro@latest -- --template blog
-```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+---
 
 Features:
 
